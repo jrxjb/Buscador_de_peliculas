@@ -14,7 +14,7 @@ export default function App(){
         .then(data => {
         // se recupera fact de data 
         // setFact(fact.data)
-//.join(' ') 
+//.join(' ')  es para unir 
         const { fact } = data
         setFact(fact)
         const VaribleFirtSentence  =  fact.split(' ',3).join(' ')  
