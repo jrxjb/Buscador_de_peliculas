@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react'
+import './app.css'
 
 export default function App(){
 
     const [fact,setFact]= useState()
     const [firtSentence,setFirtSentence] = useState('')
     const [imgUrl, setImgUrl] = useState('')
+
 
     //fetch, sacar la informacion delas palabras
     useEffect(()=>{
@@ -41,16 +43,36 @@ useEffect(()=>{
 
 },[firtSentence])
 
-    return(<>
-    hola gatito!
-    <main>
-    
+// function Update Fact
+function updateFactFuntion() {
+ fetch('https://catfact.ninja/fact')
+ .then(res => res.json())
+ .then(data => {
+    const {fact} = data 
+    const VariableUpdateFact = fact.split(' ',3).join(' ')
+    console.log(VariableUpdateFact," update")
+    setFact(fact)
+     setFirtSentence(VariableUpdateFact)
+})
 
-    <div>
-        primer fact, {fact}
-    </div>
-        {imgUrl&&<img src={imgUrl} alt="img from https://cataas.com with random text from https://catfact.ninja/fact"/>}
+}
+
+    return(
+    <main className='main-c'>
+         hola gatito!
+        <button className='boton-update-fact' onClick={updateFactFuntion}>
+            botton
+       </button>
+        <section className='fact-url'>
+            <div>
+                primer fact, {fact}
+            </div>
+            <div>
+                {imgUrl&&<img src={imgUrl} alt="img from https://cataas.com with random text from https://catfact.ninja/fact"/>}
+            </div>
+
+        </section>
     </main>
     
-    </>)
+    )
 }
