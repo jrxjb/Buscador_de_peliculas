@@ -1,12 +1,13 @@
 import {useState, useEffect} from 'react'
 import './app.css'
+import useCatImage from "./hooks/customHook.jsx"
 
 export default function App(){
 
-    const [fact,setFact]= useState()
-    const [firtSentence,setFirtSentence] = useState('')
-    const [imgUrl, setImgUrl] = useState('')
-
+const [fact,setFact]= useState()
+const [firtSentence,setFirtSentence] = useState('')
+// LLamar al custom hook 
+ const { imgUrl } = useCatImage({firtSentence})
 
     //fetch, sacar la informacion delas palabras
     useEffect(()=>{
@@ -29,19 +30,7 @@ export default function App(){
     },[])
 
 
-useEffect(()=>{
-    if(firtSentence){
-    fetch(`https://cataas.com/cat/says/${firtSentence}?json=true`)
-    .then(res=>res.json())
-    .then(data => {
-    const { url } = data
-    setImgUrl(url)
-    console.log("hola")
-    console.log(url)
-    })
-    }
 
-},[firtSentence])
 
 // function Update Fact
 function updateFactFuntion() {
