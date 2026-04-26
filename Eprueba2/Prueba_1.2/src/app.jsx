@@ -5,9 +5,11 @@ export default function App() {
 
 const [fact,setFact] = useState()
 const [imgU,setimgU] = useState()
+const [imgU2,setImgU2] = useState()
 
 const urlFact = 'https://catfact.ninja/fact'
 const urlImg = 'https://cataas.com/cat/says/'
+
 
 useEffect( ()=>{
 fetch(urlFact).then(res=>res.json())
@@ -23,11 +25,27 @@ const firstTreeWords = fact.split(' ',3).join(' ')
 setimgU(`${urlImg}${firstTreeWords}`)},
 [fact])
 
+useEffect(()=>{
+    if(!fact)return
+    const firstTreeWord2 = fact.split(' ',3).join(' ')
+    fetch(`https://cataas.com/cat/says/${firstTreeWord2}?json=true`)
+    .then(res=>res.json())
+    .then(data=>{setImgU2(data.url)
+        console.log("Prueba 2")
+        console.log(data.url)
+    })
+
+
+},[fact])
+
 return (<>
 {fact}
 imagen
 
 <img src={imgU} alt="imagen de gato con las primeras 3 palabras" />
 
+
+<h1>prueba de url 2 </h1>
+ <img src={imgU2} alt="imagen prueba u2"/>  
 </>)
 }
