@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react"
+import  useCatFact  from "./hooks/catFact.jsx"
 
 export default function App() {
 //Obtener hecho random https://catfact.ninja/fact
 
 const [fact,setFact] = useState()
 const [imgU,setimgU] = useState()
-const [imgU2,setImgU2] = useState()
+
+//Custom Hook
+
+const {imgU2} = useCatFact({fact})
 
 const urlFact = 'https://catfact.ninja/fact'
 const urlImg = 'https://cataas.com/cat/says/'
 
-
-useEffect( ()=>{
+function updateFactAndPicture(){
+   
 fetch(urlFact).then(res=>res.json())
 .then(data=>{
 console.log(data.fact)
 setFact(data.fact)}
-)},[])
+)
+}
+
+useEffect( ()=>{
+    updateFactAndPicture()
+},[])
 
 
 useEffect(()=>{
@@ -25,27 +34,18 @@ const firstTreeWords = fact.split(' ',3).join(' ')
 setimgU(`${urlImg}${firstTreeWords}`)},
 [fact])
 
-useEffect(()=>{
-    if(!fact)return
-    const firstTreeWord2 = fact.split(' ',3).join(' ')
-    fetch(`https://cataas.com/cat/says/${firstTreeWord2}?json=true`)
-    .then(res=>res.json())
-    .then(data=>{setImgU2(data.url)
-        console.log("Prueba 2")
-        console.log(data.url)
-    })
 
-
-},[fact])
 
 return (<>
 {fact}
 imagen
-
 <img src={imgU} alt="imagen de gato con las primeras 3 palabras" />
 
 
 <h1>prueba de url 2 </h1>
- <img src={imgU2} alt="imagen prueba u2"/>  
+ <img src={imgU2} alt="imagen prueba u2"/>
+
+ <button onClick={updateFactAndPicture}>Update</button> 
+
 </>)
 }
