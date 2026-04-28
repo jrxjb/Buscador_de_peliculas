@@ -37,7 +37,7 @@ setimgU(`${urlImg}${firstTreeWords}`)},
 
 
 return (<>
-{fact}
+<p>{fact}</p>
 imagen
 <img src={imgU} alt="imagen de gato con las primeras 3 palabras" />
 
