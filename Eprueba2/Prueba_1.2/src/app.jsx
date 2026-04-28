@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import  useCatFact  from "./hooks/catFact.jsx"
+import "./css/app.css"
 
 export default function App() {
 //Obtener hecho random https://catfact.ninja/fact
@@ -37,15 +38,21 @@ setimgU(`${urlImg}${firstTreeWords}`)},
 
 
 return (<>
+<section className="section-principal">
 <p>{fact}</p>
-imagen
-<img src={imgU} alt="imagen de gato con las primeras 3 palabras" />
+    <section className="section-img">
+    <section>
+        <h1>imagen</h1>
+        <img src={imgU} alt="imagen de gato con las primeras 3 palabras" />
+    </section>
 
+    <section>
+        <h1>prueba de url 2 </h1>
+        <img src={imgU2} alt="imagen prueba u2"/>
+    </section>
 
-<h1>prueba de url 2 </h1>
- <img src={imgU2} alt="imagen prueba u2"/>
-
- <button onClick={updateFactAndPicture}>Update</button> 
-
+    </section>
+  <button onClick={updateFactAndPicture}>Update</button> 
+</section>
 </>)
 }
