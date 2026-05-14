@@ -1,11 +1,19 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
+import  responseMovies from "./mocks/results.json"
+
+import ListOfMovies from './components/movies'
+import useMovies from './hooks/movies'
+
 function App() {
-  const [count, setCount] = useState(0)
+
+
+
+const movies = responseMovies.Search
+const {mapMoviesList}=useMovies({movies}) 
+
+
 
   return (
     <>
@@ -18,7 +26,8 @@ function App() {
     </header>
       <h1> Prueba tecnica </h1>
     <main>
-      
+      <h1>Peliculas</h1>
+      <ListOfMovies movies={mapMoviesList}/>
     </main>
 </div>
     </>
