@@ -1,49 +1,40 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useRef } from 'react'
 import './App.css'
 
 import  responseMovies from "./mocks/results.json"
 
 import ListOfMovies from './components/movies'
 import useMovies from './hooks/movies'
+import useSearch from './hooks/useSearch'
+import UrlFetch from './hooks/url'
+import useUrlFetch from './hooks/url'
 
 function App() {
 
-const movies = responseMovies.Search
-
 const [query,setQuery]=useState("")
-const [error,setError] = useState(null)
-
-const {mapMoviesList}=useMovies({movies}) 
+const {moviesU}=useUrlFetch({query})
+const {mapMoviesList}=useMovies({moviesU}) 
+const {error,isFirstinput} = useSearch({query})
+const [diferentQuery,setDiferentQuery] = useState("")
 
 function handleSumit(event){
 event.preventDefault()
 const data = document.getElementById('inputMovies').value
-//window.alert(data)
+//if(query==data)return
+if(data==diferentQuery){
+  window.alert("mismo query")
+  return
+}
+setDiferentQuery(query)
+window.alert("es diferente query")
 }
 
 function handleChange(event){
   const newQuery = event.target.value
+  if(newQuery.startsWith(" "))return
+  if(query==newQuery)return
   setQuery(newQuery)
-
-  if(newQuery ===''){
-    setError("No se puede bucar un elemento vacio")
-    return
-  }
-  if(newQuery.match(/^\d+$/)){
-    setError("No se puede buscar una pelicula con 1 numero")
-    return
-  }
-  if(newQuery.length<3){
-    setError("La busqueda debe tener al menos 3 caracteres")
-    return
-  }
-  console.log(query)
-  setError(null)
 }
-
-useEffect(()=>{
-
-},[])
 
   return (
     <>
@@ -53,12 +44,10 @@ useEffect(()=>{
         <input value={query} id="inputMovies" onChange={handleChange} type='text' placeholder='Movies'/>
         <button type='submit'>Buscar</button>
       </form>
-      <p> {error}</p>
+      {query&&<p style={{color:"#9E332B"}}> {error}</p>}
     </header>
-      <h1> Prueba tecnica </h1>
     <main>
-      <h1>Peliculas</h1>
-      <ListOfMovies movies={mapMoviesList}/>
+      <ListOfMovies movies={mapMoviesList}  />
     </main>
 </div>
     </>
