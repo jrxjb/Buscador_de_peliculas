@@ -50,3 +50,12 @@ Primera iteración:
 ✅Haz que la búsqueda se haga automáticamente al escribir.
 
 ✅Evita que se haga la búsqueda continuamente al escribir (debounce)
+
+
+✅/2...terminar lo del boton buscar (ver como es lo mismo pero con useRef )
+poner try, catch y finally en el fetch
+✅color cuando no hay peliculas
+
+✅colocar que las peliculas se ordenen por titulo pero se debe poner la opcion que se active y desactive, tipo checkbox y ver como integrarle useMemo 
+
+✅ usar una libreria de debounce para mayor rendimiento puedes usar setTimeout solo cambias el nombre del internal  (listo)
