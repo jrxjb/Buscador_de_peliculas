@@ -1,0 +1,29 @@
+.main-c{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.fact-url{
+    display:flex;
+    flex-direction:row;
+
+}
+
+.fact-url img{
+    max-width:640px;
+    height:auto;
+}
+
+.boton-update-fact{
+    width: 100px;
+    height:20px;
+    background-color:rgb(91, 91, 231);
+    border: 2px solid  black;
+    border-radius:20%;
+    display:flex;
+    justify-content:center;
+    margin:10px;
+}
