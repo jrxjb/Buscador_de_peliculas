@@ -1,9 +1,0 @@
-.section-principal{
-    display:flex;
-    flex-direction:column;
-}
-
-.section-img{
-    display: flex;
-    flex-direction: row;
-}
